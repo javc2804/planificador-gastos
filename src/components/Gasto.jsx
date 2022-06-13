@@ -7,6 +7,7 @@ import {
   TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+
 import { formatearFecha } from "../helpers";
 import IconoAhorro from "../img/icono_ahorro.svg";
 import IconoCasa from "../img/icono_casa.svg";
@@ -15,6 +16,7 @@ import IconoOcio from "../img/icono_ocio.svg";
 import IconoGastos from "../img/icono_gastos.svg";
 import IconoSalud from "../img/icono_salud.svg";
 import IconoSuscripciones from "../img/icono_suscripciones.svg";
+import Modal from "../components/Modal";
 
 const diccionarioIconos = {
   ahorro: IconoAhorro,
@@ -26,19 +28,24 @@ const diccionarioIconos = {
   suscripciones: IconoSuscripciones,
 };
 
+
+const Gasto = ({ gasto, setGastoEditar,eliminarGasto }) => {
+  const { categoria, cantidad, nombre, id, fecha } = gasto;
+
+
+
 const leadingActions = () => (
-  <leadingActions>
-    <SwipeAction onClick={console.log("editar")}>Editar</SwipeAction>
-  </leadingActions>
+  <LeadingActions>
+    <SwipeAction onClick={() => setGastoEditar(gasto)}>Editar</SwipeAction>
+  </LeadingActions>
 );
 const trailingActions = () => (
-  <trailingActions>
-    <SwipeAction onClick={console.log("Eliminar ...")}>Eliminar</SwipeAction>
-  </trailingActions>
+  <TrailingActions>
+    <SwipeAction destructive onClick={() => eliminarGasto(id)}>
+      Eliminar
+    </SwipeAction>
+  </TrailingActions>
 );
-
-const Gasto = ({ gasto }) => {
-  const { categoria, cantidad, nombre, id, fecha } = gasto;
 
   return (
     <SwipeableList>

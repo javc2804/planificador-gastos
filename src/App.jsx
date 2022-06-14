@@ -65,10 +65,9 @@ function App() {
   };
 
   const eliminarGasto = (id) => {
+    console.log(gastos);
     console.log("eliminando", id);
-    const listaGastos = gastos.filter((gastoState) => {
-      gastoState.id !== id;
-    });
+    const listaGastos = gastos.filter(gastoState => gastoState.id !== id);
     console.log(listaGastos);
     setGastos(listaGastos);
   };
